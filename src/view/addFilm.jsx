@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react'
-import { View, Text, SafeAreaView, TextInput, StyleSheet, Button } from 'react-native'
+import { View, Text, ScrollView, TextInput, StyleSheet, Button } from 'react-native'
 
 const item = {
     titre: "Ajouter"
@@ -8,8 +8,12 @@ const item = {
 const AddFilm = ({data, setData}) => {
 
     const [titre, setTitre] = useState("");
+    const [date, setDate] = useState("");
+
     const [description, setDescription] = useState("");
     const [note, setNote] = useState("");
+    const [link, setLink] = useState("");
+
 
     
     const save = useCallback(() =>{
@@ -18,38 +22,107 @@ const AddFilm = ({data, setData}) => {
             {
                 titre: titre,
                 description: description,
-                note: note
+                date: date,
+                note: note,
+                link: link,
             }
         ])
-    }, [setData, titre, description, note])
+    }, [setData, titre, description, note, link])
+
+    const [search, setNewSearch] = useState("");
+
+    const handleSearchChange = (e) => {
+    setNewSearch(e.target.value);
+    };
+// Searchh function
+const filtered = search.length > 0
+? data.filter((item) =>
+    item.titre.toLowerCase().includes(search.toLowerCase())
+ ) : []
 
     return (
-        <SafeAreaView>
+     <ScrollView>
+         <View style={styles.view}>
+
+{/* en bas / le search */}
+
+<Text style={styles.heading}>Rechercher un film</Text>
+            <TextInput style={styles.search}
+            value={search} 
+            onChange={handleSearchChange}
+            ></TextInput>
+            <View style={styles.text}>
+            {filtered.map((item)  => {
+            return (
+                <p key={item.id}>
+                    Nom: {item.titre} <br></br>
+                    Date: {item.date} <br></br>
+                    Rating: {item.note}/10<br></br>
+                </p>
+            );
+                })}
+            </View>
+</View>
+<View
+style={{
+    marginBottom: 5,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+}}
+/>
+            <Text style={styles.heading}>Ajouter un film</Text>
             <Text style={styles.text}>Titre :</Text>
             <TextInput onChangeText={setTitre} value={titre} style={styles.input}/>
             <Text style={styles.text}>Description :</Text>
             <TextInput onChangeText={setDescription} value={description} style={styles.input}/>
+            <Text style={styles.text}>Année de sortie :</Text>
+            <TextInput onChangeText={setDate} value={date} style={styles.input}/>
             <Text style={styles.text}>Note sur /10 :</Text>
             <TextInput onChangeText={setNote} value={note} style={styles.input}/>
-            <Button color="#D2691E" onPress={save} title="ajouter" ></Button>
-
-        </SafeAreaView>
+            <Text style={styles.text}>Mettez le lien URL de l'image :</Text>
+            <TextInput onChangeText={setLink} value={link} style={styles.input}/>
+            <Button color="#D2691E" onPress={save} title="ajouter le film " ></Button>
+            
+     </ScrollView>
     )
 }
 
 export default AddFilm;
 
 const styles = StyleSheet.create({
+    heading:{
+        color: '#D2691E',
+        fontSize: 24,
+        fontWeight: 300,
+        textAlign: 'center',
+        marginBottom:5,
+
+    },
     input: {
       height: 40,
       margin: 12,
       borderWidth: 1,
       padding: 10,
     },
+    view: {
+        marginBottom:20,
+      },
     text: {
         marginLeft: 10,
-        marginTop: 10,
         color : '#D2691E',
+        textAlign: 'center',
+        fontWeight: 400,
       },
+     search:
+    {
+        fontSize:15,
+        padding: 10,
+        width:'100%',
+        fontWeight: 200,
+        backgroundColor: '#D2691E',
+        borderRadius: 8,
+        color: '#FFFFFF',
+        marginTop: 5,
+    },
   
   });
