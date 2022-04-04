@@ -1,5 +1,7 @@
 import React, {useState, useCallback} from 'react'
 import { View, Text, ScrollView, TextInput, StyleSheet, Button } from 'react-native'
+import { Rating } from 'react-native-ratings';
+
 
 const item = {
     titre: "Ajouter"
@@ -77,10 +79,16 @@ style={{
             <TextInput onChangeText={setDescription} value={description} style={styles.input}/>
             <Text style={styles.text}>Année de sortie :</Text>
             <TextInput onChangeText={setDate} value={date} style={styles.input}/>
-            <Text style={styles.text}>Note sur /10 :</Text>
-            <TextInput onChangeText={setNote} value={note} style={styles.input}/>
+            
+            {/*<TextInput onChangeText={setNote} value={note} style={styles.input}/>*/}
             <Text style={styles.text}>Mettez le lien URL de l'image :</Text>
             <TextInput onChangeText={setLink} value={link} style={styles.input}/>
+            <Rating
+            showRating
+            onFinishRating={setNote}
+            value={note}
+            style={styles.rating}
+            />
             <Button color="#D2691E" onPress={save} title="ajouter le film " ></Button>
             
      </ScrollView>
@@ -123,6 +131,10 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         color: '#FFFFFF',
         marginTop: 5,
+    },
+    rating:
+    {
+        marginBottom:30,
     },
   
   });
