@@ -1,4 +1,4 @@
-<h1>MovieRatings++ - React Ntive<img style="width:25px; height:25px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"></img></h1>
+<h1>MovieRatings++ - React Native<img style="width:25px; height:25px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"></img></h1>
 <hr>
 
 <b><i>Dans le cadre des études - Licence pro UPMC.</i></b>
