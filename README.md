@@ -1,4 +1,8 @@
 <h1>MovieRatings++</h1>
+<hr>
+
+<b><i>Dans le cadre des études - Licence pro UPMC.</i></b>
+<hr>
 Fonctionnalités développé :<br><br>
 ✅  Première vue est un écran de login et register (user / pass) <br>
   -> j'ai réalisé la partie Authentification avec Firebase et Expo<br>
